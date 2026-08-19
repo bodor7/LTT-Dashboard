@@ -18,7 +18,11 @@ export const metadata: Metadata = {
     "لوحة تحكم عربية للتنبؤ باحتمال مغادرة عملاء LTT — بيانات تدريبية اصطناعية.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+/**
+ * نوع صريح بدل `LayoutProps<"/">` المُولَّد من Next داخل `.next/types`،
+ * حتى يعمل `tsc --noEmit` على نسخة جديدة من المستودع قبل أول بناء.
+ */
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} antialiased`}>
       <body>{children}</body>

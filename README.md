@@ -6,17 +6,14 @@
 > حقيقية، ولا أسماء عملاء، ولا سجلّات استخدام أو فواتير فعلية. أُنشئ لأغراض
 > التدريب على بناء تطبيقات الويب باستخدام الذكاء الاصطناعي.
 
-## ما في المستودع
+## التقنيات
 
-يحتوي المستودع على نسختين من اللوحة نفسها:
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · خط Cairo
 
-| المسار | الوصف |
-|---|---|
-| [`index.html`](index.html) | نسخة مستقلة في ملف واحد — CSS و JavaScript مضمَّنان، والرسوم SVG مكتوبة يدوياً، دون أي تبعية خارجية. تعمل بالنقر المزدوج. |
-| [`ltt-churn-dashboard/`](ltt-churn-dashboard) | نسخة Next.js + TypeScript + Tailwind، مقسَّمة إلى مكوّنات، ومعها مسار API. |
-
-النسخة المستقلة كانت النموذج الأول (prototype)، ونسخة Next.js هي الأساس الذي
-يُبنى عليه لاحقاً عند إضافة قاعدة بيانات.
+المشروع تطبيق Next.js في جذر المستودع. وتوجد إلى جانبه نسخة مستقلة في ملف واحد
+على [`public/standalone.html`](public/standalone.html) — كانت النموذج الأول
+(prototype)، وتعمل بفتحها في المتصفح مباشرة دون أي تثبيت، وهي متاحة على
+`/standalone.html` بعد النشر.
 
 ## المزايا
 
@@ -34,14 +31,11 @@
 ## التشغيل محلياً
 
 ```bash
-cd ltt-churn-dashboard
 npm install
 npm run dev
 ```
 
 ثم افتح http://localhost:3000
-
-للنسخة المستقلة: افتح `index.html` في المتصفح مباشرة — لا تحتاج إلى أي تثبيت.
 
 ## الأوامر
 
@@ -73,18 +67,24 @@ curl "http://localhost:3000/api/customers?risk=high&sort=bill&dir=desc"
 ## البنية
 
 ```
-index.html                     النسخة المستقلة
-ltt-churn-dashboard/
-  src/
-    app/
-      layout.tsx               الهيكل العربي RTL وخط Cairo
-      page.tsx
-      globals.css              رموز التصميم وأنماط المكوّنات
-      api/customers/route.ts   مسار API مع تحقّق على الخادم
-    components/                المكوّنات (الرسوم، الجدول، لوحة التنبؤ، الهيكل)
-    lib/                       البيانات الاصطناعية، النموذج، الأدوات
-    types/                     أنواع TypeScript
+src/
+  app/
+    layout.tsx               الهيكل العربي RTL وخط Cairo
+    page.tsx
+    globals.css              رموز التصميم وأنماط المكوّنات
+    api/customers/route.ts   مسار API مع تحقّق على الخادم
+  components/                المكوّنات (الرسوم، الجدول، لوحة التنبؤ، الهيكل)
+  lib/                       البيانات الاصطناعية، النموذج، الأدوات
+  types/                     أنواع TypeScript
+public/
+  standalone.html            النسخة المستقلة في ملف واحد
 ```
+
+## النشر على Vercel
+
+المشروع في جذر المستودع، فلا يحتاج Vercel إلى أي إعداد خاص: يكتشف Next.js
+تلقائياً، و`Root Directory` يبقى فارغاً. ولا توجد متغيّرات بيئة مطلوبة بعد،
+لأن البيانات ما زالت ثابتة في الكود.
 
 ## ملاحظات تقنية
 
