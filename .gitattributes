@@ -1,0 +1,8 @@
+# توحيد نهايات الأسطر حتى لا تظهر فروق وهمية بين أنظمة التشغيل
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
